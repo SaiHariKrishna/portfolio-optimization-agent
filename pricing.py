@@ -1,6 +1,13 @@
-import QuantLib as ql
+try:
+    import QuantLib as ql
+    _HAS_QL = True
+except ImportError:
+    _HAS_QL = False
+
 
 def price_bond(face, coupon, maturity, yield_rate):
+    if not _HAS_QL:
+        raise ImportError("QuantLib is required for price_bond. pip install QuantLib")
     today = ql.Date.todaysDate()
     ql.Settings.instance().evaluationDate = today
 

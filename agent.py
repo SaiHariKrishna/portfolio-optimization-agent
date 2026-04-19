@@ -19,8 +19,7 @@ graph.set_entry_point("duration")
 
 # Conditional routing
 def route_after_duration(state):
-    intent = state.get("intent")
-    if intent in ["QUERY", "SUGGEST"]:
+    if state.get("intent") == "EXPLAIN_ONLY":
         return "explain"
     return "optimize"
 
